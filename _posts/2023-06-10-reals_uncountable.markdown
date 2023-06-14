@@ -9,6 +9,7 @@ title:  "Proving that Reals are Uncountable (with Measure Theory)"
 date:   2023-06-13 
 tags: analysis measure_theory
 classes: wide
+permalink: /reals-uncountable-proof-measure/
 ---
 
 I have been learning some basic measure theory this summer using the tail end Terence Tao's book *Analysis II*. 

@@ -2,7 +2,7 @@ var store = [{
         "title": "Proving that Reals are Uncountable (with Measure Theory)",
         "excerpt":"I have been learning some basic measure theory this summer using the tail end Terence Tao’s book Analysis II. I have to know some fundamental results for the analysis comprehensive exam, so I figured I’d take some time (when I still have it) to study up. In exercise 7.2.6, he...","categories": [],
         "tags": ["analysis","measure_theory"],
-        "url": "/reals_uncountable/",
+        "url": "/reals-uncountable-proof-measure/",
         "teaser": null
       },{
         "title": "Welcome!",
