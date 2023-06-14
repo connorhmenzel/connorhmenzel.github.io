@@ -1,0 +1,560 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Proving that Reals are Uncountable (with Measure Theory) - Connor Menzel</title>
+<meta name="description" content="I have been learning some basic measure theory this summer using the tail end Terence Tao’s book Analysis II.  I have to know some fundamental results for the analysis comprehensive exam, so I figured I’d take some time (when I still have it) to  study up.">
+
+
+  <meta name="author" content="Connor Menzel">
+  
+  <meta property="article:author" content="Connor Menzel">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Connor Menzel">
+<meta property="og:title" content="Proving that Reals are Uncountable (with Measure Theory)">
+<meta property="og:url" content="http://localhost:4000/reals_uncountable/">
+
+
+  <meta property="og:description" content="I have been learning some basic measure theory this summer using the tail end Terence Tao’s book Analysis II.  I have to know some fundamental results for the analysis comprehensive exam, so I figured I’d take some time (when I still have it) to  study up.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-06-13T00:00:00-04:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/reals_uncountable/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Connor Menzel",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Connor Menzel Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="Connor Menzel"></a>
+        
+        <a class="site-title" href="/">
+          Connor Menzel
+          <span class="site-subtitle">student, researcher, aspiring mathematician</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/personal/">Personal</a>
+            </li><li class="masthead__menu-item">
+              <a href="/math/">Math</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/headshot.png" alt="Connor Menzel" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Connor Menzel</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Just your friendly neighborhood math PhD student.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Chapel Hill, NC</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:cmenzel@unc.edu">
+            <meta itemprop="email" content="cmenzel@unc.edu" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Proving that Reals are Uncountable (with Measure Theory)">
+    <meta itemprop="description" content="I have been learning some basic measure theory this summer using the tail end Terence Tao’s book Analysis II. I have to know some fundamental results for the analysis comprehensive exam, so I figured I’d take some time (when I still have it) to study up.">
+    <meta itemprop="datePublished" content="2023-06-13T00:00:00-04:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Proving that Reals are Uncountable (with Measure Theory)
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I have been learning some basic measure theory this summer using the tail end Terence Tao’s book <em>Analysis II</em>. 
+I have to know some fundamental results for the analysis comprehensive exam, so I figured I’d take some time (when I still have it) to 
+study up.</p>
+
+<p>In exercise 7.2.6, he asks you to furnish another proof that the reals are uncountable, using the concept of outer 
+measure. If $\Omega \subseteq \mathbb{R}^n$, we define the outer measure as</p>
+
+\[m^{\ast}(\Omega) = \inf_{(B_j)_{j \in J}}\bigg\{\sum_{j \in J}\text{vol}(B_j): (B_j)_{j \in J} \text{ is a countable cover of } \Omega \text{ by open boxes}\bigg\}.\]
+
+<p>In loose terms, it’s the smallest total volume we can get when we cover some subset of $\mathbb{R}^n$ with a countable number of open boxes, which 
+here are defined as</p>
+
+\[B = \prod_{i=1}^n(a_i,b_i),\]
+
+<p>which have volume $\text{vol}(B) = \prod_{i=1}^n(b_i-a_i)$.</p>
+
+<p>Showing that the reals are uncountable using the concept of outer measure requires two steps:</p>
+<ol>
+  <li>Show that any countable set has outer measure zero</li>
+  <li>Show that $\mathbb{R}$ is does not have measure zero</li>
+</ol>
+
+<p>To me, this approach is a bit easier to conceptualize than the usual diagonalization argument. It’s certainly beautiful, but it always 
+felt like magic and it didn’t really paint a picutre. Here I feel we can paint a picture with our open cover and gain a bit more intuition 
+for why the reals are so much larger than the rationals. Let’s jump in!</p>
+
+<p><em>Proof.</em> I’ll start with the first step, proving that any countable set in $\mathbb{R}$ has outer measure zero.
+Let $A = \{a_1, a_2, \dots\}$ be a countable subset of $\mathbb{R}$.
+Fix an arbitrary $\varepsilon&gt;0$ and for each $a_i$, let’s define</p>
+
+\[B_i = (a_i - \varepsilon/2^{i+1},a_i + \varepsilon/2^{i+1}),\]
+
+<p>so $\text{vol}(B_i) = \varepsilon/2^i$. This seems like a random construction, yes. But remember that <strong><em>we want the sum of the volumes of our boxes 
+to be less than $\varepsilon$</em></strong>. Our construction is useful since we know that</p>
+
+\[\sum_{n=1}^{\infty} \frac{1}{2^n} = 1.\]
+
+<p>Clearly $(B_i)_{i=1,2,\dots}$ is a countable cover $A$ by open boxes, so now we can compute (with our series above)</p>
+
+\[m^{\ast}(A) \leq \sum_{i=1}^{\infty}\text{vol}(B_i) = \sum_{i=1}^{\infty}\frac{\varepsilon}{2^i} = \varepsilon.\]
+
+<p>We can make $\varepsilon$ arbitrarily small (in other words we can take the limit $\varepsilon \to 0$), so we have that $m^{\ast}(A) = 0$.</p>
+
+<p>Now to prove that $\mathbb{R}$ is uncountable, we just need to show that $m^{\ast}(\mathbb{R}) \neq 0$.
+For any $R &gt;0$, $R \in \mathbb{R}$, we know that $(-R,R) \subseteq \mathbb{R}$, so from the monotonicty of outer measure we have
+$m^{\ast}(-R,R) \leq m^{\ast}(\mathbb{R})$.
+Note that $m^{\ast}(-R,R) = 2R$, which can be arbitrarily large, but really all we need is for it to be non-zero, so</p>
+
+\[m^{\ast}(\mathbb{R}) \geq m^{\ast}(-2R) = 2R &gt; 0.\]
+
+<p>Since the outer measure of $\mathbb{R}$ is non-zero, we conclude it is uncountable.  <strong>QED</strong></p>
+
+<p>Now, we did take for granted the fact that $m^{\ast}(-R, R) = 2R$, which would take a some more work to do.
+Maybe I’ll work on that in another post, but I think it’s more work than I want to do here.</p>
+
+<div style="display:none">
+$
+\newcommand{\emp}{\emptyset}
+$
+</div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#analysis" class="page__taxonomy-item" rel="tag">analysis</a><span class="sep">, </span>
+    
+      <a href="/tags/#measure-theory" class="page__taxonomy-item" rel="tag">measure_theory</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-06-13T00:00:00-04:00">June 13, 2023</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Proving+that+Reals+are+Uncountable+%28with+Measure+Theory%29%20http%3A%2F%2Flocalhost%3A4000%2Freals_uncountable%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Freals_uncountable%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Freals_uncountable%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/welcome-to-my-blog/" class="pagination--pager" title="Welcome!
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/welcome-to-my-blog/" rel="permalink">Welcome!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Hi there!
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Connor Menzel. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    <script type="text/javascript" async
+	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     extensions: ["tex2jax.js"],
+     jax: ["input/TeX", "output/HTML-CSS"],
+     tex2jax: {
+       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+       processEscapes: true
+     },
+     "HTML-CSS": { availableFonts: ["TeX"] }
+   });
+</script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
