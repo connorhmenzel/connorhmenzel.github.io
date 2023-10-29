@@ -2,7 +2,7 @@
 
 title: "Teaching"
 layout: single
-permalink: /personal/
+permalink: /teaching/
 
 ---
 
